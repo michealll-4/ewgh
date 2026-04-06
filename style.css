@@ -3135,3 +3135,77 @@ body.kb-dragging-active * {
     padding-right: var(--space-4) !important;
   }
 }
+
+/* ===== Surface depth cleanup pass ===== */
+:root,
+[data-theme="dark"] {
+  --surface-canvas: var(--bg-1);
+  --surface-panel: var(--bg-2);
+  --surface-raised: var(--bg-3);
+  --surface-border: var(--line);
+  --depth-shadow-0: none;
+  --depth-shadow-1: 0 2px 10px rgba(0,0,0,.18);
+}
+
+[data-theme="light"] {
+  --surface-canvas: var(--bg-1);
+  --surface-panel: var(--bg-2);
+  --surface-raised: #f7f9ff;
+  --surface-border: var(--line);
+  --depth-shadow-0: none;
+  --depth-shadow-1: 0 2px 10px rgba(18,28,45,.10);
+}
+
+body,
+.main,
+.topbar {
+  background: var(--surface-canvas) !important;
+}
+
+/* Remove ambient noise and extra optical texture layers */
+[data-theme="dark"] body::before {
+  display: none !important;
+}
+
+.nav-item.active {
+  box-shadow: none !important;
+}
+
+/* Shared panel language (rail, dialogs, content cards) */
+:is(.task-card, .rail-card, .a-card, .ws-panel, .hw-section, .hw-subject-card, .settings-card, .prep-card, .prep-section-card, .dialog, .cal-main, .cal-panel, .summary-card, .summary-pill) {
+  background: var(--surface-panel) !important;
+  border-color: var(--surface-border) !important;
+  box-shadow: var(--depth-shadow-0) !important;
+}
+
+/* Raised tier only for interactive hover */
+:is(.task-card, .rail-card, .a-card, .prep-card, .settings-card, .hw-subject-card):hover {
+  background: var(--surface-raised) !important;
+  box-shadow: var(--depth-shadow-1) !important;
+  transform: translateY(-1px);
+}
+
+/* Subject cards stay distinctive but integrated with same depth system */
+.s-card {
+  background: var(--surface-panel) !important;
+  border: 1px solid var(--surface-border) !important;
+  box-shadow: none !important;
+}
+
+.s-card:hover {
+  background: var(--surface-raised) !important;
+  box-shadow: var(--depth-shadow-1) !important;
+  transform: translateY(-1px);
+}
+
+.s-dot,
+.s-card:hover .s-dot {
+  box-shadow: 0 0 0 2px var(--s-dot-ring, rgba(255,255,255,.06)) !important;
+}
+
+.s-badge,
+.s-edit-btn,
+.s-del-btn,
+.venr-action-btn:hover {
+  box-shadow: none !important;
+}
