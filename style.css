@@ -223,7 +223,7 @@ body { display: flex; }
   align-items: center;
   gap: 9px;
   padding: 9px 10px;
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   color: var(--t2);
   font-size: 13px;
   font-weight: 500;
@@ -264,7 +264,7 @@ body { display: flex; }
   padding: 8px 10px;
   background: var(--bg-2);
   border: 1px solid var(--line-mid);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   color: var(--t1);
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
@@ -370,6 +370,32 @@ body { display: flex; }
   margin-top: 3px;
 }
 
+
+
+/* ── SHARED PRIMITIVES ─────────────────────────────────────── */
+.surface-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--sh-sm);
+}
+
+.section-kicker {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--t0);
+  line-height: 1.15;
+}
+
 /* ── BUTTONS ────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
@@ -429,7 +455,7 @@ body { display: flex; }
   padding: 7px 10px;
   background: var(--bg-2);
   border: 1px solid var(--line-mid);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   color: var(--t1);
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
@@ -575,7 +601,7 @@ body { display: flex; }
   color: var(--t3);
   font-size: 13px;
   border: 1px dashed var(--line-mid);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 }
 
 /* Rail cards */
@@ -603,7 +629,7 @@ body { display: flex; }
   align-items: center;
   gap: 10px;
   padding: 6px 6px;
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background .12s;
 }
@@ -813,7 +839,7 @@ body { display: flex; }
 .s-badge {
   display: inline-flex; align-items: center; gap: 3px;
   margin-top: 11px; padding: 4px 10px;
-  border-radius: 7px; font-size: 11px; font-weight: 600;
+  border-radius: var(--radius-sm); font-size: 11px; font-weight: 600;
   box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 1px 3px rgba(0,0,0,.2);
 }
 .att-crit { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,84,84,.28); }
@@ -837,7 +863,7 @@ body { display: flex; }
   padding: 5px 11px;
   background: var(--s-btn-bg, var(--bg-3));
   border: 1px solid var(--s-btn-border, var(--line-mid));
-  border-radius: 7px; color: var(--t2); font-size: 11px; cursor: pointer;
+  border-radius: var(--radius-sm); color: var(--t2); font-size: 11px; cursor: pointer;
   font-family: 'DM Sans', sans-serif; font-weight: 500;
   box-shadow: 0 1px 0 rgba(255,255,255,.05) inset, 0 1px 2px rgba(0,0,0,.2);
   transition: background .12s, color .12s, box-shadow .12s;
@@ -850,7 +876,7 @@ body { display: flex; }
   padding: 5px 9px;
   background: none;
   border: 1px solid rgba(224,84,84,.22);
-  border-radius: 7px; color: var(--red); font-size: 11px; cursor: pointer;
+  border-radius: var(--radius-sm); color: var(--red); font-size: 11px; cursor: pointer;
   box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
   transition: background .12s, box-shadow .12s;
 }
@@ -867,7 +893,7 @@ body { display: flex; }
   background: var(--bg-2);
   border: 1px solid var(--line);
   border-left: 3px solid var(--hw-col, var(--amber));
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 .hw-sec-head {
@@ -934,7 +960,7 @@ body { display: flex; }
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
-  transition: all .13s;
+  transition: all var(--duration-fast);
   font-family: 'DM Sans', sans-serif;
   white-space: nowrap;
 }
@@ -951,7 +977,7 @@ body { display: flex; }
 .ws-panel {
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   min-height: 340px;
@@ -1013,7 +1039,7 @@ body { display: flex; }
   min-width: 78px;
   justify-content: center;
   padding: 8px 14px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--line-mid);
   background: var(--bg-2);
   color: var(--t1);
@@ -1272,7 +1298,7 @@ body.dark .cal-view-btn.active,
   padding: 8px 10px;
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background .12s;
   margin-bottom: 5px;
@@ -1325,7 +1351,7 @@ body.dark .cal-view-btn.active,
 .settings-card {
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   padding: 18px;
 }
 .danger-card { border-color: rgba(224,84,84,.2); }
@@ -1396,7 +1422,7 @@ body.dark .cal-view-btn.active,
   padding: 8px 11px;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   color: var(--t0);
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
@@ -1416,7 +1442,7 @@ body.dark .cal-view-btn.active,
 }
 .detail-cell {
   background: var(--bg-3);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   padding: 9px 11px;
 }
 .detail-cell-wide { grid-column: 1/-1; }
@@ -1439,7 +1465,7 @@ body.dark .cal-view-btn.active,
   color: var(--t2);
   font-size: 11.5px;
   cursor: pointer;
-  transition: all .13s;
+  transition: all var(--duration-fast);
   font-family: 'DM Sans', sans-serif;
 }
 .prog-btn:hover { background: var(--bg-5); color: var(--t1); }
@@ -1468,7 +1494,7 @@ body.dark .cal-view-btn.active,
   padding: 8px 14px;
   background: var(--amber-dim);
   border: 1px solid rgba(232,168,56,.25);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   color: var(--amber);
   font-size: 12.5px;
   font-weight: 600;
@@ -1555,7 +1581,7 @@ body.dark .cal-view-btn.active,
   padding: 11px 17px;
   background: var(--bg-3);
   border: 1px solid var(--line-mid);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   color: var(--t0);
   font-size: 13px;
   font-weight: 500;
@@ -1771,7 +1797,7 @@ body.dark .cal-view-btn.active,
 }
 .cal-year-card {
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   background: var(--bg-2);
   overflow: hidden;
 }
@@ -2088,7 +2114,7 @@ body.dark .cal-view-btn.active,
   background: var(--bg-1);
   border: 1px solid var(--line);
   border-top: 2px solid var(--prep-accent, var(--line-mid));
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 18px 18px 16px;
   text-align: left;
   cursor: pointer;
@@ -2184,7 +2210,7 @@ body.dark .cal-view-btn.active,
 .prep-section-card {
   background: var(--bg-1);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 14px 16px;
   margin-bottom: 14px;
   animation: fadeUp .18s ease both;
@@ -2219,7 +2245,7 @@ body.dark .cal-view-btn.active,
 .prep-ov-full { grid-column: 1 / -1; }
 .prep-ov-cell {
   background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: 10px; padding: 9px 10px;
+  border-radius: var(--radius-md); padding: 9px 10px;
 }
 .prep-ov-label {
   font-size: 10px; color: var(--t3); text-transform: uppercase;
@@ -2232,7 +2258,7 @@ body.dark .cal-view-btn.active,
 .prep-textarea {
   width: 100%; min-height: 90px;
   background: var(--input-bg); border: 1px solid var(--input-border);
-  border-radius: 10px; padding: 10px 12px;
+  border-radius: var(--radius-md); padding: 10px 12px;
   color: var(--t0); font-family: 'DM Sans', sans-serif;
   font-size: 13px; line-height: 1.55; resize: vertical;
   outline: none; transition: border-color .13s;
@@ -2256,7 +2282,7 @@ body.dark .cal-view-btn.active,
   width: 18px; height: 18px; border-radius: 999px;
   border: 1.5px solid var(--line-bright); background: transparent;
   display: grid; place-items: center; cursor: pointer;
-  transition: all .13s; flex-shrink: 0;
+  transition: all var(--duration-fast); flex-shrink: 0;
 }
 .prep-paper-chk:hover { border-color: var(--green); }
 .prep-paper-chk.on { background: var(--green); border-color: var(--green); }
@@ -2289,7 +2315,7 @@ body.dark .cal-view-btn.active,
 .prep-detail-right {
   background: var(--bg-1);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 14px 16px;
   animation: fadeUp .16s ease both;
   position: sticky; top: 80px;
@@ -2360,7 +2386,7 @@ body.dark .cal-view-btn.active,
 
 .kb-card {
   background: var(--bg-1); border: 1px solid var(--line);
-  border-radius: 10px; padding: 9px 10px;
+  border-radius: var(--radius-md); padding: 9px 10px;
   cursor: grab; user-select: none;
   touch-action: none;
   transition: background .14s ease, box-shadow .18s ease, transform .18s cubic-bezier(.2,.8,.2,1), border-color .14s ease, opacity .12s ease;
@@ -2482,7 +2508,7 @@ body.kb-dragging-active * {
 /* Inline add card */
 .kb-inline-add {
   background: var(--bg-1); border: 1px solid var(--amber);
-  border-radius: 10px; padding: 9px 10px;
+  border-radius: var(--radius-md); padding: 9px 10px;
   animation: fadeUp .15s ease;
   display: flex; flex-direction: column; gap: 8px;
   margin-bottom: 6px;
@@ -2582,7 +2608,7 @@ body.kb-dragging-active * {
 .prep-kanban-panel {
   background: var(--bg-1);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 16px;
   animation: fadeUp .16s ease both;
 }

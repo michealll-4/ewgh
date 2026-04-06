@@ -439,16 +439,16 @@ function buildAssessmentsView(){
 
   if(incomplete.length){
     const sec = document.createElement('div');
-    sec.className = 'a-section a-section-plain';
-    sec.innerHTML = `<div><div class="a-section-title">Incomplete assessments</div></div>`;
+    sec.className = 'a-section a-section-plain a-section-header';
+    sec.innerHTML = `<div><div class="a-section-title section-title">Incomplete assessments</div><div class="a-section-sub section-kicker">Active work queue</div></div>`;
     grid.appendChild(sec);
     incomplete.forEach(a => grid.appendChild(buildAssessmentCard(a)));
   }
 
   if(completed.length){
     const sec = document.createElement('div');
-    sec.className = 'a-section a-section-plain';
-    sec.innerHTML = `<div><div class="a-section-title">Completed assessments</div></div>`;
+    sec.className = 'a-section a-section-plain a-section-header';
+    sec.innerHTML = `<div><div class="a-section-title section-title">Completed assessments</div><div class="a-section-sub section-kicker">Recorded outcomes</div></div>`;
     grid.appendChild(sec);
     completed.forEach(a => grid.appendChild(buildAssessmentCard(a)));
   }
@@ -752,7 +752,7 @@ function buildPrepCard(a){
   return `
     <button class="a-card" onclick="openPrepDetail('${a.id}')"
       style="--subject-color:${color};--c-accent:${color}">
-      <div class="a-head-clean">
+      <div class="a-card-head a-head-clean">
         <span class="a-subject">${subj ? subj.name : 'Unknown'}</span>
         <span class="days-chip ${chipClass(days)}">${daysLabel(days)}</span>
       </div>
@@ -822,7 +822,7 @@ function renderPrepDetail(aid){
       <div class="prep-top-left">
 
         <!-- Overview -->
-        <div class="prep-section-card" style="margin-bottom:0">
+        <div class="prep-section-card surface-card" style="margin-bottom:0">
           <div class="prep-sc-head">
             <span class="prep-sc-icon" style="background:${subColor}20;color:${subColor}">A</span>
             <span class="prep-sc-title">Overview</span>
@@ -838,7 +838,7 @@ function renderPrepDetail(aid){
         </div>
 
         <!-- Practice Papers -->
-        <div class="prep-section-card" style="margin-top:14px;margin-bottom:0">
+        <div class="prep-section-card surface-card" style="margin-top:14px;margin-bottom:0">
           <div class="prep-sc-head">
             <span class="prep-sc-icon" style="background:var(--grn-dim);color:var(--green)">▶</span>
             <span class="prep-sc-title">Practice Papers</span>
@@ -854,7 +854,7 @@ function renderPrepDetail(aid){
 
       <!-- KANBAN: right column, full height -->
       <div class="prep-top-right">
-        <div class="prep-kanban-panel">
+        <div class="prep-kanban-panel surface-card">
           <div class="prep-kanban-header">
             <span class="prep-sc-title">Study Tasks</span>
             <button class="btn btn-primary btn-sm" onclick="openAddKanbanCard('${aid}')">+ Add Task</button>
@@ -2512,15 +2512,19 @@ renderSection = function(cid, assessments, variant){
     card.className = `task-card v-${variant}`;
     card.style.setProperty('--c-accent', subj.color);
     card.innerHTML = `
-      <div class="tc-head tc-head-clean">
-        <span class="tc-subject">${subj.name}</span>
-        <span class="days-chip ${chipClass(days)}">${daysLabel(days)}</span>
-      </div>
-      <div class="tc-title-row">${a.title}</div>
-      <div class="tc-sub tc-sub-clean">${cap(a.type)} · ${fmtDate(a.date)}${a.topic?` · ${a.topic}`:''}</div>
-      <div class="tc-foot tc-foot-clean">
-        <span class="prog-pill p-${a.progress}">${getProgressLabel(a.progress)}</span>
-        <div class="prog-track compact"><div class="prog-fill" style="width:${pct}%;background:${subj.color}"></div></div>
+      <div class="tc-hierarchy">
+        <div class="tc-header tc-head-clean">
+          <span class="tc-subject section-kicker">${subj.name}</span>
+          <span class="days-chip ${chipClass(days)}">${daysLabel(days)}</span>
+        </div>
+        <div class="tc-body">
+          <div class="tc-title-row section-title">${a.title}</div>
+          <div class="tc-sub tc-sub-clean tc-meta-line">${cap(a.type)} · ${fmtDate(a.date)}${a.topic?` · ${a.topic}`:''}</div>
+        </div>
+        <div class="tc-foot tc-foot-clean">
+          <span class="prog-pill p-${a.progress}">${getProgressLabel(a.progress)}</span>
+          <div class="prog-track compact"><div class="prog-fill" style="width:${pct}%;background:${subj.color}"></div></div>
+        </div>
       </div>`;
     card.addEventListener('click', ()=>openDetailModal(a.id));
     el.appendChild(card);
@@ -2538,12 +2542,14 @@ buildAssessmentCard = function(a){
   card.className = 'a-card' + (done ? ' is-completed' : '');
   card.style.setProperty('--subject-color', subj.color);
   card.innerHTML = `
-    <div class="a-head-clean">
-      <span class="a-subject">${subj.name}</span>
+    <div class="a-card-head a-head-clean">
+      <span class="a-subject section-kicker">${subj.name}</span>
       <span class="days-chip ${done?'chip-green':chipClass(days)}">${done?'Done':daysLabel(days)}</span>
     </div>
-    <div class="a-title">${a.title}</div>
-    <div class="a-subline">${cap(a.type)} · ${fmtDate(a.date)}${a.weighting?` · ${a.weighting}%`:''}</div>
+    <div class="a-card-body">
+      <div class="a-title section-title">${a.title}</div>
+      <div class="a-subline tc-meta-line">${cap(a.type)} · ${fmtDate(a.date)}${a.weighting?` · ${a.weighting}%`:''}</div>
+    </div>
     ${done ? `<div class="a-score-big ${scoreClass}">${percent!==null?`${percent}%`:'—'}</div><div class="a-score-note">${a.mark!==''&&a.outOf!==''?`${a.mark} / ${a.outOf}`:'No mark saved'}</div>` : ''}
     <div class="a-foot clean">
       <span class="prog-pill ${done?'p-done':'p-'+a.progress}">${done?'Done ✓':getProgressLabel(a.progress)}</span>
@@ -2588,16 +2594,16 @@ buildAssessmentsView = function(){
 
   if(incomplete.length){
     const sec = document.createElement('div');
-    sec.className = 'a-section a-section-plain';
-    sec.innerHTML = `<div><div class="a-section-title">Incomplete assessments</div></div>`;
+    sec.className = 'a-section a-section-plain a-section-header';
+    sec.innerHTML = `<div><div class="a-section-title section-title">Incomplete assessments</div><div class="a-section-sub section-kicker">Active work queue</div></div>`;
     grid.appendChild(sec);
     incomplete.forEach(a => grid.appendChild(buildAssessmentCard(a)));
   }
 
   if(completed.length){
     const sec = document.createElement('div');
-    sec.className = 'a-section a-section-plain';
-    sec.innerHTML = `<div><div class="a-section-title">Completed assessments</div></div>`;
+    sec.className = 'a-section a-section-plain a-section-header';
+    sec.innerHTML = `<div><div class="a-section-title section-title">Completed assessments</div><div class="a-section-sub section-kicker">Recorded outcomes</div></div>`;
     grid.appendChild(sec);
     completed.forEach(a => grid.appendChild(buildAssessmentCard(a)));
   }
@@ -2747,7 +2753,7 @@ buildHomeworkView = function(){
     summary.style.display = 'none';
   }
 
-  grid.className = 'hw-board';
+  grid.className = 'hw-board system-board';
   grid.innerHTML='';
 
   if(!state.subjects.length){
@@ -2796,7 +2802,7 @@ buildHomeworkView = function(){
     const activeCount = subjectItems.filter(hw=>!hw.done).length;
     const doneCount = subjectItems.length - activeCount;
     const card = document.createElement('section');
-    card.className = 'hw-subject-card';
+    card.className = 'hw-subject-card surface-card';
     card.style.setProperty('--hw-subject', subj.color || 'var(--amber)');
 
     let listHtml = '';
@@ -2847,7 +2853,7 @@ buildHomeworkView = function(){
         <div class="hw-subject-head-main">
           <div class="hw-subject-dot"></div>
           <div>
-            <div class="hw-subject-title">${subj.name}</div>
+            <div class="hw-subject-title section-title">${subj.name}</div>
             <div class="hw-subject-sub">${activeCount} active${doneCount ? ` · ${doneCount} done` : ''}</div>
           </div>
         </div>
