@@ -3135,3 +3135,128 @@ body.kb-dragging-active * {
     padding-right: var(--space-4) !important;
   }
 }
+
+/* ===== Motion simplification pass ===== */
+:root,
+[data-theme="dark"],
+[data-theme="light"] {
+  --motion-duration-fast: .14s;
+  --motion-duration-base: .2s;
+  --motion-curve: cubic-bezier(.2,.8,.2,1);
+}
+
+/* Keep one short entry motion language. */
+:is(
+  .view.switching,
+  .alert-strip:not(.hidden),
+  .task-card,
+  .rail-card,
+  .a-card,
+  .s-card,
+  .ws-panel,
+  .settings-card,
+  .prep-detail-right,
+  .prep-kanban-panel,
+  .kb-card,
+  .kb-inline-add
+) {
+  animation: fadeUp var(--motion-duration-base) var(--motion-curve) both;
+}
+
+/* Decorative perpetual motion removed. */
+.venr-link:hover .venr-dot { animation: none; }
+.a-card.is-completed::before {
+  animation: none;
+  background-position: 50% 0;
+}
+
+/* Unify transition timing family across interactive elements. */
+:is(
+  .btn,
+  .theme-btn,
+  .venr-link,
+  .nav-item,
+  .nav-icon,
+  .venr-arrow,
+  .task-card,
+  .radar-row,
+  .a-card,
+  .s-card,
+  .s-dot,
+  .hw-chk,
+  .ws-a-row,
+  .ws-add-btn,
+  .close-btn,
+  .prog-btn,
+  .cal-detail-item,
+  .prep-card,
+  .prep-paper-item,
+  .prep-picker-arrow,
+  .prep-picker-dot,
+  .kb-card,
+  .kb-move-btn,
+  .kb-del-btn
+) {
+  transition-timing-function: var(--motion-curve) !important;
+}
+
+/* Hover transforms: subtle, consistent micro-elevation/shift only. */
+:is(.btn-primary:hover, .btn-outline:hover, .btn-danger:hover, .prog-btn:hover) {
+  transform: translateY(-1px);
+}
+:is(.task-card:hover, .radar-row:hover, .ws-a-row:hover, .cal-detail-item:hover) {
+  transform: translateX(1px);
+}
+:is(.a-card:hover, .s-card:hover, .kb-card:hover, .prep-card:hover) {
+  transform: translateY(-1px);
+}
+:is(.hw-chk:hover, .ws-add-btn:hover, .close-btn:hover, .prep-picker-arrow:hover, .prep-picker-dot.is-active) {
+  transform: none;
+}
+
+/* Concise state-change feedback only where state is communicated. */
+:is(.hw-chk.on, .ws-t-chk.on, .cal-hw-chk.on) {
+  animation: checkPop var(--motion-duration-fast) var(--motion-curve);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .view.switching,
+    .alert-strip:not(.hidden),
+    .task-card,
+    .rail-card,
+    .a-card,
+    .s-card,
+    .ws-panel,
+    .settings-card,
+    .prep-detail-right,
+    .prep-kanban-panel,
+    .kb-card,
+    .kb-inline-add,
+    .hw-chk.on,
+    .ws-t-chk.on,
+    .cal-hw-chk.on
+  ) {
+    animation: none !important;
+  }
+
+  :is(
+    .btn,
+    .theme-btn,
+    .venr-link,
+    .nav-item,
+    .task-card,
+    .radar-row,
+    .a-card,
+    .s-card,
+    .ws-a-row,
+    .close-btn,
+    .prog-btn,
+    .cal-detail-item,
+    .prep-card,
+    .kb-card
+  ) {
+    transition-duration: .01ms !important;
+    transform: none !important;
+  }
+}
