@@ -2605,7 +2605,8 @@ buildAssessmentsView = function(){
 
 function openEditHomework(id){
   const hw=(state.homework||[]).find(h=>h.id===id); if(!hw) return;
-  openAddHomework();
+  if(typeof _openAddHomeworkModal === 'function') _openAddHomeworkModal();
+  else openAddHomework();
   document.getElementById('hw-modal-title').textContent='Edit Homework';
   document.getElementById('hw-form-id').value=hw.id;
   document.getElementById('hw-subject').value=hw.subjectId;
@@ -2620,13 +2621,13 @@ saveHomework = function(){
   const task = document.getElementById('hw-task').value.trim();
   const id = document.getElementById('hw-form-id').value;
   if(!sid||!task){ showToast('Please select a subject and enter a task', 'error'); return; }
-  const payload = { subjectId:sid, task, date:document.getElementById('hw-date').value||null, priority:document.getElementById('hw-priority').value, done:false };
+  const payload = { subjectId:sid, task, date:document.getElementById('hw-date').value||null, priority:document.getElementById('hw-priority').value };
   if(id){
     const idx = (state.homework||[]).findIndex(h=>h.id===id);
     if(idx!==-1) state.homework[idx] = { ...state.homework[idx], ...payload };
     showToast('Homework updated', 'success');
   } else {
-    state.homework.push({ id:'hw_'+Date.now(), ...payload });
+    state.homework.push({ id:'hw_'+Date.now(), ...payload, done:false });
     showToast('Homework added', 'success');
   }
   saveState(); closeModal('modal-homework'); buildHomeworkView(); if(getCurrentView()==='calendar') buildCalendar();

@@ -1692,7 +1692,7 @@ body.dark .cal-view-btn.active,
 
 /* close button rotate on hover */
 .close-btn { transition: background .13s, color .13s, transform .15s; }
-.close-btn:hover { transform: scale(1.12) rotate(6deg); }
+.close-btn:hover { transform: scale(1.04); }
 
 /* progress buttons: lift on hover */
 .prog-btn { transition: all .13s; }
@@ -1837,72 +1837,70 @@ body.dark .cal-view-btn.active,
 
 
 /* ===== Dashboard spacing hotfix pass ===== */
-.topbar{
+#view-dashboard > .topbar{
   padding: 22px 28px 18px !important;
 }
-.dashboard-intro{
+#view-dashboard .dashboard-intro{
   margin: 4px 0 22px !important;
 }
-.dash-layout{
+#view-dashboard .dash-layout{
   grid-template-columns: minmax(0, 1fr) 316px !important;
   gap: 20px !important;
   padding: 24px 30px 32px !important;
 }
-.dash-feed{
+#view-dashboard .dash-feed{
   gap: 36px !important;
 }
-.dash-rail{
+#view-dashboard .dash-rail{
   gap: 18px !important;
 }
-.dash-summary,
-.summary-strip{
+#view-dashboard .dash-summary{
   gap: 16px !important;
   margin: 0 0 26px !important;
   padding: 0 24px !important;
   box-sizing: border-box !important;
 }
-.summary-card,
-.summary-pill{
+#view-dashboard .summary-card{
   padding: 18px 18px !important;
 }
-.feed-group{
+#view-dashboard .feed-group{
   gap: 14px !important;
   margin-bottom: 22px !important;
 }
-.feed-label{
+#view-dashboard .feed-label{
   padding: 0 4px 12px !important;
 }
-.empty-box{
+#view-dashboard .card-stack .empty-box{
   padding: 28px 20px !important;
 }
-.task-card{
+#view-dashboard .task-card{
   padding: 18px 18px 16px !important;
 }
-.tc-head-clean{
+#view-dashboard .tc-head-clean{
   margin-bottom: 12px !important;
 }
-.tc-title-row{
+#view-dashboard .tc-title-row{
   margin-bottom: 8px !important;
 }
-.tc-sub-clean{
+#view-dashboard .tc-sub-clean{
   margin-bottom: 2px;
 }
-.tc-foot-clean{
+#view-dashboard .tc-foot-clean{
   margin-top: 14px !important;
   padding-top: 12px !important;
 }
-.rail-card{
+#view-dashboard .rail-card{
   padding: 18px 18px 16px !important;
   gap: 12px !important;
 }
-.rail-title{
+#view-dashboard .rail-title{
   padding-bottom: 10px !important;
   margin-bottom: 2px !important;
 }
-.radar-row{
+#view-dashboard .radar-row{
   padding: 7px 6px !important;
 }
-.focus-row{
+#view-dashboard .focus-row{
   gap: 6px !important;
   margin-bottom: 10px !important;
   padding: 3px 0 !important;
@@ -2286,7 +2284,9 @@ body.dark .cal-view-btn.active,
 }
 .hw-inline-date-label:hover{color:var(--t2);background:var(--bg-3)}
 .hw-inline-date-label.visible{display:inline}
-@media (max-width: 520px){\n  .hw-inline-date{width:100%;min-width:0}\n}
+@media (max-width: 520px){
+  .hw-inline-date{width:100%;min-width:0}
+}
 
 /* ── PREPARATION VIEW ──────────────────────────────────────────── */
 
@@ -3027,4 +3027,13 @@ body.kb-dragging-active * {
 }
 #view-assessments .a-section-plain .a-section-sub{
   display:none !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
