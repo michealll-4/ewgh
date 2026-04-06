@@ -3135,3 +3135,102 @@ body.kb-dragging-active * {
     padding-right: var(--space-4) !important;
   }
 }
+
+/* ===== Rhythm + hierarchy pass ===== */
+.rhythm-primary {
+  margin-bottom: var(--space-4);
+}
+.rhythm-secondary {
+  margin-bottom: var(--space-5) !important;
+}
+.rhythm-tertiary {
+  margin-top: 0;
+}
+
+/* Section labels: reduce shouting */
+.feed-label {
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: .04em !important;
+  text-transform: none !important;
+  color: var(--t2) !important;
+}
+.urgent-label,
+.warn-label,
+.dim-label {
+  color: var(--t2) !important;
+}
+.feed-dot {
+  opacity: .8;
+}
+
+/* One urgency mechanism: accent edge + chip only */
+.task-card {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+.task-card.v-urgent,
+.task-card.v-warning,
+.task-card.v-upcoming {
+  border-left-width: 3px !important;
+}
+[data-theme="dark"] .task-card.v-urgent,
+[data-theme="dark"] .task-card.v-warning {
+  box-shadow: none !important;
+}
+
+/* Card header composition consistency */
+.tc-head-clean,
+.a-head-clean {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 8px !important;
+}
+.tc-title-row,
+.a-title {
+  order: 1;
+}
+.tc-sub-clean,
+.a-subline {
+  order: 2;
+  margin-top: 0 !important;
+}
+.tc-foot-clean,
+.a-foot.clean {
+  order: 3;
+  margin-top: 12px !important;
+}
+
+/* Homework cards: title, metadata line, then status row */
+.hw-card-edit-wrap {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 6px !important;
+}
+.hw-card-title-wrap {
+  order: 1;
+}
+.hw-card-meta {
+  order: 2;
+  margin-top: 2px;
+}
+.hw-card-date-wrap {
+  order: 3;
+  justify-content: flex-start;
+  margin-top: 2px;
+}
+
+/* One primary CTA per page section (topbar primary keeps emphasis) */
+.btn-primary {
+  background: var(--bg-2) !important;
+  border: 1px solid var(--line-mid) !important;
+  color: var(--t1) !important;
+}
+.rhythm-primary .btn-primary,
+.dialog .btn-primary {
+  background: var(--amber) !important;
+  border-color: var(--amber) !important;
+  color: #1a0e00 !important;
+}
