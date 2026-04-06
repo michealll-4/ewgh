@@ -2625,6 +2625,14 @@ body.kb-dragging-active * {
   cursor: grabbing !important;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Main content area */
 .kb-card-main { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
 

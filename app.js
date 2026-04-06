@@ -797,7 +797,13 @@ function renderPrepDetail(aid){
   if(countEl){
     const cls = days <= 3 ? 'prep-chip-red' : days <= 7 ? 'prep-chip-amber' : days <= 14 ? 'prep-chip-yellow' : 'prep-chip-dim';
     countEl.className = `prep-countdown-badge ${cls}`;
-    countEl.textContent = days <= 0 ? 'Due today' : days === 1 ? '1 day left' : `${days} days left`;
+    countEl.textContent = days < 0
+      ? `${Math.abs(days)} day${Math.abs(days)===1?'':'s'} overdue`
+      : days === 0
+        ? 'Due today'
+        : days === 1
+          ? '1 day left'
+          : `${days} days left`;
   }
 
   const body = document.getElementById('prep-detail-body');
@@ -1674,7 +1680,11 @@ function calSetView(view){
   if(view === calView) return;
   saveCalScrollPosition();
   calView = view;
-  resetCalendarToTodayContext();
+  const selected = calSel ? parseDate(calSel) : null;
+  const anchor = selected || TODAY;
+  calYear = anchor.getFullYear();
+  calMonth = anchor.getMonth();
+  calSel = localDateStr(anchor);
 
   buildCalendar(
     view === 'year'
@@ -2420,7 +2430,11 @@ function switchView(name){
   if(name==='homework')    buildHomeworkView();
   if(name==='workspace')   buildWorkspaceView();
   if(name==='calendar'){
-    resetCalendarToTodayContext();
+    const selected = calSel ? parseDate(calSel) : null;
+    const anchor = selected || TODAY;
+    calYear = anchor.getFullYear();
+    calMonth = anchor.getMonth();
+    calSel = localDateStr(anchor);
     buildCalendar({
       restoreScroll: calView === 'year',
       scrollToSelection: calView !== 'year',
