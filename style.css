@@ -3135,3 +3135,142 @@ body.kb-dragging-active * {
     padding-right: var(--space-4) !important;
   }
 }
+
+/* ===== Spacing rhythm system (4/8/12/16/20/24/32) ===== */
+:root,
+[data-theme="dark"],
+[data-theme="light"] {
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-7: 32px;
+
+  --layout-pad-x: var(--sp-6);
+  --layout-pad-y: var(--sp-6);
+  --layout-gap: var(--sp-5);
+
+  --card-pad: var(--sp-5);
+  --card-head-gap: var(--sp-3);
+  --card-content-gap: var(--sp-3);
+  --card-footer-gap: var(--sp-2);
+  --card-footer-split: var(--sp-3);
+}
+
+/* topbar rhythm + remove ad-hoc view offsets */
+.topbar {
+  margin-bottom: 0 !important;
+  padding: var(--sp-5) var(--layout-pad-x) var(--sp-4) !important;
+  gap: var(--sp-3) !important;
+}
+.topbar-right { gap: var(--sp-2) !important; }
+.topbar-date,
+.page-sub { margin-top: var(--sp-1) !important; }
+
+/* normalize main container paddings/gaps across views */
+:is(.dash-layout, .a-grid, .s-grid, .hw-grid, .hw-board, .settings-wrap, .ws-body-wrap) {
+  padding: var(--layout-pad-y) var(--layout-pad-x) var(--sp-7) !important;
+  gap: var(--layout-gap) !important;
+}
+
+/* calendar layout rhythm */
+.cal-shell {
+  gap: 0;
+  padding: 0 var(--layout-pad-x) var(--sp-7) !important;
+}
+.cal-main {
+  border-radius: 12px 0 0 12px;
+}
+.cal-panel {
+  padding: var(--sp-5) var(--sp-4) !important;
+  gap: var(--sp-3) !important;
+}
+.cal-scroller-list {
+  padding: var(--sp-4) var(--sp-4) var(--sp-7) !important;
+  gap: var(--sp-5) !important;
+}
+
+/* standard internal card spacing */
+:is(.task-card, .a-card, .rail-card, .s-card, .settings-card, .hw-subject-card) {
+  padding: var(--card-pad) !important;
+}
+
+/* headers */
+.tc-head,
+.tc-head-clean,
+.a-head-clean,
+.s-top,
+.hw-subject-head,
+.settings-title,
+.rail-title {
+  margin-bottom: var(--card-head-gap) !important;
+}
+
+/* content rhythm */
+.card-stack,
+.hw-card-list,
+.settings-card,
+.rail-card,
+.cal-week-content {
+  gap: var(--card-content-gap) !important;
+}
+
+/* footer split with consistent divider spacing */
+.tc-foot,
+.tc-foot-clean,
+.a-foot,
+.a-foot.clean,
+.s-actions,
+.detail-foot {
+  margin-top: var(--card-footer-split) !important;
+  padding-top: var(--card-footer-split) !important;
+  gap: var(--card-footer-gap) !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+/* rhythm-preserving breakpoints */
+@media (max-width: 1020px) {
+  :root,
+  [data-theme="dark"],
+  [data-theme="light"] {
+    --layout-pad-x: var(--sp-5);
+    --layout-pad-y: var(--sp-5);
+    --layout-gap: var(--sp-4);
+    --card-pad: var(--sp-4);
+  }
+
+  .dash-layout,
+  .a-grid,
+  .s-grid,
+  .hw-grid,
+  .hw-board,
+  .settings-wrap,
+  .ws-body-wrap {
+    gap: var(--layout-gap) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  :root,
+  [data-theme="dark"],
+  [data-theme="light"] {
+    --layout-pad-x: var(--sp-4);
+    --layout-pad-y: var(--sp-4);
+    --layout-gap: var(--sp-3);
+    --card-pad: var(--sp-4);
+    --card-head-gap: var(--sp-2);
+    --card-content-gap: var(--sp-2);
+  }
+
+  .topbar {
+    padding: var(--sp-4) var(--layout-pad-x) var(--sp-3) !important;
+  }
+
+  .cal-panel,
+  .cal-scroller-list {
+    padding-left: var(--sp-3) !important;
+    padding-right: var(--sp-3) !important;
+  }
+}
