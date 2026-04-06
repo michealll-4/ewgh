@@ -3054,6 +3054,40 @@ body.kb-dragging-active * {
   --motion-fast: .16s;
   --motion-base: .2s;
   --motion-ease: cubic-bezier(.2,.8,.2,1);
+  --control-h: 40px;
+  --control-h-sm: 32px;
+  --control-radius: 12px;
+  --control-border-w: 1px;
+  --control-border: var(--line);
+  --control-border-hover: var(--line-mid);
+  --control-bg-neutral: var(--bg-1);
+  --control-bg-neutral-hover: var(--bg-2);
+  --control-bg-neutral-active: var(--bg-3);
+  --control-fg-neutral: var(--t2);
+  --control-fg-neutral-hover: var(--t1);
+  --control-fg-neutral-active: var(--t0);
+  --control-focus-ring: color-mix(in srgb, var(--amber) 40%, transparent);
+  --control-focus-outline: color-mix(in srgb, var(--bg-1) 70%, #000 30%);
+  --control-primary-bg: var(--amber);
+  --control-primary-bg-hover: var(--amber-soft);
+  --control-primary-bg-active: color-mix(in srgb, var(--amber) 86%, var(--bg-0));
+  --control-primary-fg: #1a0e00;
+  --control-primary-border: var(--amber);
+  --control-primary-shadow: 0 4px 14px rgba(232,168,56,.26);
+  --control-danger-bg: color-mix(in srgb, var(--red-dim) 85%, transparent);
+  --control-danger-bg-hover: color-mix(in srgb, var(--red-dim) 96%, transparent);
+  --control-danger-bg-active: color-mix(in srgb, var(--red-dim) 72%, var(--bg-1));
+  --control-danger-fg: var(--red);
+  --control-danger-border: color-mix(in srgb, var(--red) 22%, var(--line));
+  --chip-radius: 999px;
+  --chip-pad-y: 3px;
+  --chip-pad-x: 8px;
+  --chip-font: 11px;
+  --chip-gap: 4px;
+}
+
+[data-theme="light"] {
+  --control-focus-outline: color-mix(in srgb, var(--bg-1) 80%, #fff 20%);
 }
 
 /* Shared section gutters and vertical rhythm */
@@ -3086,24 +3120,100 @@ body.kb-dragging-active * {
 }
 
 /* Unified controls */
-:is(.btn, .sel, .finput, .settings-num, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .hw-show-completed, .prep-prog-btn) {
-  min-height: 38px;
-  border-radius: var(--radius-sm) !important;
+:is(.btn, .sel, .finput, .row-action, .prog-btn, .close-btn, .settings-num, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .hw-show-completed, .prep-prog-btn) {
+  min-height: var(--control-h);
+  border-radius: var(--control-radius) !important;
+  border-width: var(--control-border-w) !important;
+  border-style: solid;
+  border-color: var(--control-border);
+  background: var(--control-bg-neutral);
+  color: var(--control-fg-neutral);
+  box-shadow: none;
   transition:
     background var(--motion-fast) var(--motion-ease),
     border-color var(--motion-fast) var(--motion-ease),
     color var(--motion-fast) var(--motion-ease),
-    transform var(--motion-fast) var(--motion-ease);
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
 }
 
-:is(.btn, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .prep-prog-btn):hover {
+:is(.btn, .sel, .finput, .row-action, .prog-btn, .close-btn, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .hw-show-completed, .prep-prog-btn):hover {
+  background: var(--control-bg-neutral-hover);
+  border-color: var(--control-border-hover);
+  color: var(--control-fg-neutral-hover);
   transform: translateY(-1px);
 }
 
-:is(.btn:active, .theme-btn:active, .venr-link:active, .s-edit-btn:active, .s-del-btn:active, .hw-add-btn:active, .prep-prog-btn:active) {
+:is(.btn, .sel, .finput, .row-action, .prog-btn, .close-btn, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .hw-show-completed, .prep-prog-btn):active {
+  background: var(--control-bg-neutral-active);
+  color: var(--control-fg-neutral-active);
   transform: translateY(0);
 }
 
+:is(.btn, .sel, .finput, .row-action, .prog-btn, .close-btn, .settings-num, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .hw-show-completed, .prep-prog-btn):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--control-focus-outline),
+    0 0 0 4px var(--control-focus-ring);
+  border-color: color-mix(in srgb, var(--amber) 65%, var(--line-mid));
+}
+
+.btn.btn-sm {
+  min-height: var(--control-h-sm) !important;
+}
+
+.btn-primary {
+  background: var(--control-primary-bg) !important;
+  color: var(--control-primary-fg) !important;
+  border-color: var(--control-primary-border) !important;
+  box-shadow: var(--control-primary-shadow);
+}
+.btn-primary:hover {
+  background: var(--control-primary-bg-hover) !important;
+  border-color: var(--control-primary-bg-hover) !important;
+}
+.btn-primary:active {
+  background: var(--control-primary-bg-active) !important;
+  border-color: var(--control-primary-bg-active) !important;
+}
+
+:is(.btn-outline, .btn-ghost, .row-action, .prog-btn, .close-btn) {
+  background: var(--control-bg-neutral) !important;
+  border-color: var(--control-border) !important;
+  color: var(--control-fg-neutral) !important;
+}
+
+:is(.btn-danger, .btn-danger-sm, .row-action-danger) {
+  background: var(--control-danger-bg) !important;
+  border-color: var(--control-danger-border) !important;
+  color: var(--control-danger-fg) !important;
+}
+:is(.btn-danger, .btn-danger-sm, .row-action-danger):hover {
+  background: var(--control-danger-bg-hover) !important;
+  border-color: color-mix(in srgb, var(--red) 28%, var(--line)) !important;
+}
+:is(.btn-danger, .btn-danger-sm, .row-action-danger):active {
+  background: var(--control-danger-bg-active) !important;
+}
+
+.prog-btn.on,
+.prep-prog-btn.on {
+  background: var(--amber-dim) !important;
+  border-color: color-mix(in srgb, var(--amber) 35%, var(--line)) !important;
+  color: var(--amber-soft) !important;
+}
+
+/* Shared chip/badge grammar across dashboard, assessments, homework, calendar */
+:is(.badge, .days-chip, .s-badge, .cal-hw-subject-chip, .prep-countdown-badge, .hw-subject-tag) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  padding: var(--chip-pad-y) var(--chip-pad-x);
+  border-radius: var(--chip-radius) !important;
+  font-size: var(--chip-font);
+  line-height: 1.1;
+  white-space: nowrap;
+}
 /* Typography hierarchy alignment */
 .page-title,
 .a-section-title,
