@@ -3037,3 +3037,101 @@ body.kb-dragging-active * {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Cohesive system pass (spacing, components, interactions) ===== */
+:root,
+[data-theme="dark"],
+[data-theme="light"] {
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 18px;
+  --space-5: 24px;
+  --space-6: 30px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --motion-fast: .16s;
+  --motion-base: .2s;
+  --motion-ease: cubic-bezier(.2,.8,.2,1);
+}
+
+/* Shared section gutters and vertical rhythm */
+:is(.dash-layout, .a-grid, .s-grid, .hw-board, .prep-body, .prep-detail-body, .cal-shell, .settings-wrap) {
+  padding-left: var(--space-5) !important;
+  padding-right: var(--space-5) !important;
+}
+
+:is(.dash-summary, .summary-strip) {
+  gap: var(--space-3) !important;
+  margin-bottom: var(--space-5) !important;
+}
+
+/* Card family normalization */
+:is(.summary-card, .summary-pill, .task-card, .rail-card, .a-card, .s-card, .settings-card, .hw-subject-card, .prep-card, .prep-section-card, .cal-main, .cal-panel, .dialog) {
+  border-radius: var(--radius-md) !important;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
+}
+
+:is(.task-card, .rail-card, .a-card, .settings-card, .hw-subject-card, .prep-card, .prep-section-card) {
+  border: 1px solid var(--line) !important;
+}
+
+:is(.task-card, .rail-card, .a-card, .settings-card, .hw-subject-card, .prep-card, .prep-section-card) > :last-child {
+  margin-bottom: 0;
+}
+
+/* Unified controls */
+:is(.btn, .sel, .finput, .settings-num, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .hw-show-completed, .prep-prog-btn) {
+  min-height: 38px;
+  border-radius: var(--radius-sm) !important;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+:is(.btn, .theme-btn, .venr-link, .s-edit-btn, .s-del-btn, .hw-add-btn, .prep-prog-btn):hover {
+  transform: translateY(-1px);
+}
+
+:is(.btn:active, .theme-btn:active, .venr-link:active, .s-edit-btn:active, .s-del-btn:active, .hw-add-btn:active, .prep-prog-btn:active) {
+  transform: translateY(0);
+}
+
+/* Typography hierarchy alignment */
+.page-title,
+.a-section-title,
+.rail-title,
+.settings-title,
+.prep-sc-title {
+  letter-spacing: 0;
+}
+
+.page-sub,
+.summary-sub,
+.settings-sub,
+.a-topic,
+.tc-sub,
+.prep-card-meta {
+  line-height: 1.5;
+}
+
+/* Keep dense views readable */
+.feed-group,
+.a-section,
+.prep-section {
+  margin-bottom: var(--space-4) !important;
+}
+
+@media (max-width: 760px) {
+  :is(.dash-layout, .a-grid, .s-grid, .hw-board, .prep-body, .prep-detail-body, .cal-shell, .settings-wrap) {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+  }
+}
